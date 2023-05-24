@@ -1,0 +1,30 @@
+﻿@if ((ViewData["CartGuest"] as List<Product>).Count > 0) //If there are items in the cart
+{
+    double subTotal = 0;
+    foreach (var item in ViewData["CartGuest"] as List<Product>)
+    {
+        <div class="card w-25 d-inline-block">
+            <img class="card-img-top product-display" src="data:image/*;base64,@item.Pic1" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title"> @item.Title</h5>
+                <p class="card-text">Description: @item.ShortDescription Price: @string.Format($"{item.Price:c2}")</p>
+                <br />
+                <a asp-area="" asp-controller="Product" asp-action="MoreDetails" asp-route-id="@item.Id">More Information</a>
+                <a asp-area="" asp-controller="Product" asp-action="RemoveFromCart" asp-route-id="@item.Id">Remove From Cart</a>
+            </div>
+        </div>
+    }
+    <br />
+    <br />
+    <h3>Subtotal = @string.Format($"{subTotal:c2}")</h3>
+    <br />
+    <br />
+    <a class="btn btn-primary" asp-area="" asp-controller="Product" asp-action="Checkout">
+        <span>Checkout</span>
+    </a>
+}
+else
+{
+    <h1>Your cart is empty :(</h1>
+}
+

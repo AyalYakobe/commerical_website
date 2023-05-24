@@ -1,0 +1,25 @@
+﻿@model Product
+
+@section Header{ <h1 class="title-details">Product</h1>}
+
+@if (Model.Pic1 != null)
+{
+    <img src="data:image/*;base64,@Model.Pic1" class=" CustomeImage rounded img-fluid p-0 frame product-display" />
+}
+@if (Model.Pic2 != null)
+{
+    <img src="data:image/*;base64,@Model.Pic2" class=" CustomeImage rounded img-fluid p-0 product-display" />
+}
+@if (Model.Pic3 != null)
+{
+    <img src="data:image/*;base64,@Model.Pic3" class=" CustomeImage rounded img-fluid p-0 product-display" />
+}
+
+<div>Item: @Model.Title</div>
+<div>Description: @Model.ShortDescription</div>
+<div>Price: @string.Format($"{Model.Price:c2}")</div>
+<div>Date Posted: @Model.Date.ToShortDateString()</div>
+<div>State: @Model.State</div>
+<div>Seller: @Model.Owner.UserName</div>
+
+<a asp-area="" asp-controller="Product" asp-action="AddToCart" asp-route-id="@Model.Id">Add To Cart</a>

@@ -1,0 +1,26 @@
+﻿.frame {
+    width: 150px;
+    height: 150px;
+    vertical-align: unset;
+}
+.product-display {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 181px;
+    height:200px;
+}
+.text-center {
+    padding: 50px;
+}
+.container {
+    top: 100px;
+    position: relative;
+    z-index: 200;
+}
+.background {
+    background-image: url("../images/PileOfSocksImg.jpg");
+}
+.title-details {
+    color:yellow!important;
+}

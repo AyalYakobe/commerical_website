@@ -1,0 +1,39 @@
+﻿@if (!Context.Items.ContainsKey("CookieKey")) //If user is signed in
+{
+    @await Html.PartialAsync("Login/_PartialLoginIf", new SignIn())
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li><h2 class="navbar-text">@Greeting() @(((ApplicationUser)Context.Items["CookieKey"]).UserName) !</h2></li>
+
+</ul>
+
+<a asp-area="" asp-controller="Home" asp-action="RegisterUser">Want to update account details? Update here!</a>
+
+<br />
+
+<a asp-area="" asp-controller="Home" asp-action="SignOut">Log out</a>
+
+<br />
+}
+
+@{string Greeting() //Greeting function to determine time of day
+    {
+        if (int.Parse(DateTime.Now.ToString("HH")) > 12)
+        {
+            if (int.Parse(DateTime.Now.ToString("HH")) > 19)
+            {
+                return "Good Evening";
+            }
+            return "Good Afternoon";
+        }
+        else
+        {
+            return "Good Morning";
+        }
+    }}
+
+    @section Scripts {
+    <partial name="General/_ValidationScriptsPartial" />
+}

@@ -1,0 +1,32 @@
+﻿@section Header{ <h1 class="title-details">Cart</h1>}
+
+@if ((Context.Items.ContainsKey("CookieKey"))) //If user exists
+{
+    if ((ViewData["CartUser"] as List<Product>).Count > 0) //If the cart has items
+    {
+        @await Html.PartialAsync("Products/_PartialCart")
+    }
+    else
+    {
+        <h1>Your cart is empty :(</h1>
+    }
+}
+else
+{
+    if (Context.Request.Cookies.ContainsKey("AspProjectGuestInfo")) //If cookie guest was created
+    {
+        if ((ViewData["CartGuest"] as List<Product>)[0] != null) //If cookie guest cart has items
+        {
+            @await Html.PartialAsync("Products/_PartialGuestCart")
+        }
+        else
+        {
+            <h1>Your cart is empty :(</h1>
+        }
+    }
+    else
+    {
+        <h1>Your cart is empty :(</h1>
+    }
+}
+

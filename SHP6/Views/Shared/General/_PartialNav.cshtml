@@ -1,0 +1,41 @@
+﻿<div>
+    <h3>General</h3>
+    <ul>
+        @if (ViewData["CurrentPage"] as string != "Home") //If user is not on "HomePage"
+        {
+            <li>
+                <a asp-area="" asp-controller="Home" asp-action="HomePage">
+                    <span>Home</span>
+                </a>
+            </li>
+        }
+        @if (ViewData["CurrentPage"] as string != "Cart") //If user is not on "Cart"
+        {
+            <li>
+                <a asp-area="" asp-controller="Product" asp-action="Cart">
+                    <span>Cart</span>
+                </a>
+            </li>
+        }
+        @if (ViewData["CurrentPage"] as string != "AboutUs") //If user is not on "AboutUs"
+        {
+            <li>
+                <a asp-area="" asp-controller="Home" asp-action="AboutUs">
+                    <span>About Us</span>
+                </a>
+            </li>
+        }
+        @if (ViewData["CurrentPage"] as string != "EnterItem") //If user is not on "ProductRegistry"
+        {
+            @if (Context.Items.ContainsKey("CookieKey")) //If user is signed in
+            {
+                <li>
+                    <a asp-area="" asp-controller="Product" asp-action="RegisterProduct">
+                        <span>Enter Item</span>
+                    </a>
+                </li>
+            }
+        }
+    </ul>
+</div>
+

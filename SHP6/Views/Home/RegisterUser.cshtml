@@ -1,0 +1,16 @@
+﻿@model ApplicationUser
+
+@section Header{ <h1 class="title-details">User Registry</h1>}
+
+@if (Context.Items.ContainsKey("CookieKey")) //If user exists sends to different partial view
+{
+    @await Html.PartialAsync("Login/_PartialUpdate")
+}
+else
+{
+    @await Html.PartialAsync("Login/_PartialRegister")
+}
+
+@section Scripts {
+    <partial name="General/_ValidationScriptsPartial" />
+}

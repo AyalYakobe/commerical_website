@@ -1,0 +1,21 @@
+﻿<div class="text-center">
+    <a asp-controller="Home" asp-action="HomePage" asp-route-sort="Title" class="btn btn-primary">Sort by Title</a>
+    <a asp-controller="Home" asp-action="HomePage" asp-route-sort="Date" class="btn btn-primary">Sort by Date</a>
+</div>
+
+@foreach (var item in ViewData["Product"] as List<Product>)
+{
+    if (item.State == 1)
+    {
+        <div class="card w-25 d-inline-block card-deck">
+            <img class="card-img-top product-display" src="data:image/*;base64,@item.Pic1" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title"> @item.Title</h5>
+                <p class="card-text">Description: @item.ShortDescription Price: @string.Format($"{item.Price:c2}")</p>
+                <a asp-area="" asp-controller="Product" asp-action="AddToCart" asp-route-id="@item.Id">Add To Cart</a>
+                <br />
+                <a asp-area="" asp-controller="Product" asp-action="MoreDetails" asp-route-id="@item.Id">More Information</a>
+            </div>
+        </div>
+    }
+}
